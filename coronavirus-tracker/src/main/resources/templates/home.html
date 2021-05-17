@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"> <!-- thymelife name space that is used to pull up values from the model set in Home Controller -->
+
+  <head>
+   <style>
+    h1 {text-align: center;} 
+    p  {text-align: center;}
+    table{text-align: center; } 
+    h2 {text-align: center;}   
+   </style>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+
+  <body>
+  <div class ="container"> 
+  
+ 
+  <h1>  <span class="badge badge-pill badge-danger">      Coronavirus Tracker Application   </span></h1>
+  <p>       This application lists the total number of cases reported across the globe </p>
+  
+  
+  <div class="jumbotron">
+  
+  <h2 class="text-Noto Sans">Total number of cases reported since the outbreak : 
+  </h2>
+  <h1><span class="display-4" th:text="${totalReportedCases}"></span></h1>
+  
+  <hr class ="my-4">
+  
+  <h2>
+  <span class="text-Noto Sans">Total number of cases reported since previous day : </span>
+  </h2>
+  <h1> <span class="display-4" th:text="${totalNewCasesToday}"> </span></h1>
+ 
+  
+</div>
+
+
+<br>
+
+  
+  <table class="table">
+      <tr>
+        <th><h2><b>State</b></h2></th>
+        <th><h2><b>Country</b></h2></th>
+        <th><h2><b>Total Cases Reported</b></h2></th>
+        <th><h2><b>Number of cases Increased today</b></h2></th>
+      </tr>
+      <tr th:each="locationStat : ${locationStats}"> <!--  we set up a attribute value called locationStat in our controller and then we looked it up in our template -->
+  		
+        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.Country}"></td>
+        <td th:text="${locationStat.latestTotalCases}">0</td>
+        <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        <td th:text="${locationStat.danger}"></td>
+      </tr>
+    </table>
+    </div>
+    
+  </body>
+
+</html>
